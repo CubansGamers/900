@@ -1,255 +1,139 @@
-<html manifest="offlineCache.manifest">
-	<style>
-		.button {
-		  background-color: #003263;  
-		  border-radius: 5px;
-		  color: white;
-		  padding: .5em;
-		  text-decoration: none;
-		  height:100%;
-		  display:inline-table;
-		  font-family: system-ui;
-		}
+<!DOCTYPE html>
+<html>
+<head>
+<title>PS4 9.00 Host By Cubans_Gamers</title>
+<style>
+html, body {
+background-image: url('img.jpg');
+background-size: 100%;
+background-repeat: no-repeat;
+background-color: #24272b;
+color: white;
+text-align: center;
+margin: 0px;
+overflow: hidden;
+}
+h1 {
+text-shadow: 0.1em 0.1em 0.2em black;
+font-size: 25px;
+text-align: center;
+color: yellow;
+}
+#jb-progress {
+display: block;
+}
+#main-section {
+display: none;
+}
+.btn {
+background-color: #003263;
+color: white;
+width: 260px;
+height: 49px;
+padding-bottom: 5px;
+text-align: center;
+font-size: 20px;
+margin-top: 8px;
+margin-bottom: 8px;
+margin-left: 8px;
+margin-right: 8px;
+border-bottom-width: 0px;
+border-right-width: 0px;
+border-top-width: 0px;
+border-left-width: 0px;
+transition-duration: 0.4s;
+cursor: pointer;
+border-radius: 8px;
+}
+.btn:hover {
+background-color: #0058b1;
+}
+.btn-hen{
+background-color: #b10000;
+}
+.btn-hen:hover {
+background-color: #f31414;
+}
+</style>
+<script src="int64.js"></script>
+<script src="rop.js"></script>
+<script src="kexploit.js"></script>
+<script src="webkit.js"></script>
+</head>
+<body onload="setTimeout(poc, 50);">
+<script>
+if (window.applicationCache.status=='0'){window.location.replace("cache.html");}
+</script>
+<h1 id="msgs">PS4 9.00 Host By Cubans_Gamers</h1>
+<hr>
+<br><br><br><br><br><br>
+<div id="jb-progress">
+<br>
+<h1 id=msgs2 style="font-size: 30px;margin-top: 56px;margin-bottom: 412px;"> Cargando... Por Favor Espera </h1>
+<br>
+<hr style="margin-top: -67px;">
+<h1 style="margin-top: 14px;color:yellow;">Muchísimos Juegos a tu Alcance - Yunier Telf: 23 559725 - +53 59562523 / WhatsApp:+53 59562523/ Manzanillo-Granma</h1>
+</div>
+<div id="main-section">
+<h1 style="font-size:30px;margin-top: -67px;color:yellow;">Exito al Cargar ✔</h1>
+<br><br>
+<h1 style="font-size:20px;">Otras Opciones</h1>
+<button class="btn" onmouseover="msgs.innerHTML='Modificar la Velocidad del Ventilador de la Consola (Recomendado 50 - 60&#176;C)'" onmouseout="msgs.innerHTML='PS4 9.00 Host By Cubans_Gamers'" onclick=load_fanthreshold() style="margin-left: 75px;"> Controlar Ventilador </button><select id="tempC"></select>&#176;C
+<br>
+<h1 style="font-size:20px;">Temperatura de Aceleración por Defecto: 79&#176;C</h1>
+<br>
+<hr style="margin-top: 255px;">
+<h1 style="margin-top: 14px;color:yellow;">Muchísimos Juegos a tu Alcance - Yunier Telf: 23 559725 - +53 59562523 / WhatsApp:+53 59562523/ Manzanillo-Granma</h1>
+<script>
+for(var i=40; i<=75; i=i+5){
+    var select = document.getElementById("tempC");
+    var option = document.createElement("OPTION");
+	select.options.add(option);
+	option.text = i;
+	option.value = i;
+}
+tempC.value=60;
+</script>
+<script>
+function jbdone(){
+	document.getElementById("main-section").style.display = "block";
+	document.getElementById("jb-progress").style.display = "none";
+	PLfile = "goldhen_2.2.4.bin";
+	setTimeout(load_poc, 1000);
+}
 
-		.button:focus,
-		.button:hover {
-		  background-color: #007bff;
-		  color: White;
-		}
+function allset(){
+	msgs.innerHTML = LoadedMSG
+}
 
-		.titlehead {
-		  background-color: #003263;  
-		  border-radius: 5px;
-		  color: white;
-		  padding: .5em;
-		  text-decoration: none;
-		  text-align: center;
-		  margin-top: -10px;
-		  margin-bottom: -10px;
-		  font-family: system-ui;
-		}
+function load_poc(){
+ var req = new XMLHttpRequest();
+ req.responseType = "arraybuffer";
+ req.open('GET', PLfile);
+ req.send();
+ req.onreadystatechange = function () {
+  if (req.readyState == 4) {
+   PLD = req.response;
+   var payload_buffer = chain.syscall(477, 0, PLD.byteLength*4 , 7, 0x1002, -1, 0);
+   var pl = p.array_from_address(payload_buffer, PLD.byteLength*4);
+   var padding = new Uint8Array(4 - (req.response.byteLength % 4) % 4);
+   var tmp = new Uint8Array(req.response.byteLength + padding.byteLength);
+   tmp.set(new Uint8Array(req.response), 0);
+   tmp.set(padding, req.response.byteLength);
+   var shellcode = new Uint32Array(tmp.buffer);
+   pl.set(shellcode,0);
+   var pthread = p.malloc(0x10);
+   chain.call(libKernelBase.add32(OFFSET_lk_pthread_create), pthread, 0x0, payload_buffer, 0);
+   allset();
+  }
+ };
+}
 
-		.titlehead:focus,
-		.titlehead:hover {
-		  background-color: #007bff;
-		  color: White;
-		}
-
-		.bg {
-		  /* The image used */
-		  background-image: url("image.png");
-
-		  
-
-		  /* Center and scale the image nicely */
-		  background-position: center;
-		  background-repeat: no-repeat;
-		  background-size: cover;
-		}
-	</style>
-	<head>
-		<title>Cubans Gamers PS4 Host 9.00</title>
-		<script>
-			function allset() {
-				document.getElementById("progress").innerHTML="Carga Satisfactoria ✔";
-			}
-		</script>
-		<script src="int64.js"></script>
-		<script src="rop.js"></script>
-		<script src="kexploit.js"></script>
-		<script src="webkit.js"></script>
-		<script type="text/javascript" src="main.js"></script>
-	</head>
-	<body class="bg">
-		<script>
-			window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="Guardando Cache de Pagina!!"};
-			window.applicationCache.onprogress=function(a){document.getElementById("progress").innerHTML="Cargando Cache: "+(Math.round(100*(a.loaded/a.total)))+"% Completed"};
-			window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="Pagina Guardada!!";setTimeout(function(){document.getElementById("progress").innerHTML="Cierre el Navegador,Desactiva el Internet y Vuelve Abrir La Pagina Para Cargar el Exploit"; }, 1500);};
-		</script>
-		<script>
-			function load_PS4Debug(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/ps4debug.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_permanentuart(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/permanentuart.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_App2USB(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/app2usb.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_BackupDB(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/backupdb.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_AppDumper(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/appdumper.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_KernelDumper(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/kerneldumper.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_ModuleDumper(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/mdumper.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_RestoreDB(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/restoredb.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_DisableASLR(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/disableaslr.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_DisableUpdates(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/disableupdates.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_EnableUpdates(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/enableupdates.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_EnableBrowser(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/enablebrowser.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_ExitIDU(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/exitidu.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_FTP(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/ftp.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_HistoryBlocker(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/historyblocker.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_RIFRenamer(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/rifrenamer.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			  
-			function load_Orbis(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/Orbis-Toolbox-900.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_Linux(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/LinuxLoader.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_ToDex(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/ToDex.bin";
-				LoadviaGoldhen(PLfile);
-			}
-
-			function load_WebRTE(){
-				progress.innerHTML="Esperando Payload...Espere un Momento !!";
-				PLfile = "payloads/WebRTE.bin";
-				LoadviaGoldhen(PLfile);
-			}
-			
-			function load_Both(){
-				document.getElementById("progress").innerHTML="Cargando Exploit...Espere un Momento !!"
-				setTimeout(poc, 1500);
-			}
-			
-			function load_payload(payload){
-				if(payload == "app2usb"){
-					load_App2USB();
-				}else if(payload == "backup"){
-					load_BackupDB();
-				}else if(payload == "disableupdates"){
-					load_DisableUpdates();
-				}else if(payload == "dumper"){
-					load_AppDumper();
-				}else if(payload == "enablebrowser"){
-					load_EnableBrowser();
-				}else if(payload == "enableupdates"){
-					load_EnableUpdates();
-				}else if(payload == "exitidu"){
-					load_ExitIDU();
-				}else if(payload == "ftp"){
-					load_FTP();
-				}else if(payload == "orbis"){
-					load_Orbis();
-				}else if(payload == "historyblocker"){
-					load_HistoryBlocker();
-				}else if(payload == "disableaslr"){
-					load_DisableASLR();
-				}else if(payload == "kerneldumper"){
-					load_KernelDumper();
-				}else if(payload == "linuxloader"){
-					load_Linux();
-				}else if(payload == "moduledumper"){
-					load_ModuleDumper();
-				}else if(payload == "permanentuart"){
-					load_permanentuart();
-				}else if(payload == "ps4debug"){
-					load_PS4Debug();
-				}else if(payload == "restore"){
-					load_RestoreDB();
-				}else if(payload == "rifrenamer"){
-					load_RIFRenamer();
-				}else if(payload == "todex"){
-					load_ToDex();
-				}else if(payload == "webrte"){
-					load_WebRTE();
-				}
-			}
-		</script>
-		<h1 id="progress" class="titlehead">Cubans Gamers PS4 Host 9.00</h1><hr><br>
-		<input type="hidden" id="psip" value="localhost"/>
-		<div>
-			<table align="center" style="width:600px;margin-top:30px;">
-			<tr>
-			<td align="center" id="exploit" colspan="2">
-			<a href="#" class="button" onclick="load_Both(); return false" style="width:43%">ACTIVAR</a>
-			</td>
-			</tr>
-			<tr><td><br/></td></tr>
-			<tr>
-			<td colspan="2" align="center"><hr><br></td>
-			</tr>
-			<tr>
-			</table></div>
-	</body>
+function load_fanthreshold(){
+LoadedMSG="Temperatura de Aceleración Establecida ..."
+PLfile = "fan-threshold"+tempC.value+".bin";
+load_poc();
+}
+</script>
+</body>
 </html>
