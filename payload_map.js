@@ -3,9 +3,9 @@ const payload_map =
         {
             displayTitle: 'Activar',
             description: 'Ya Puedes Ejecutar Juegos y Aplicaciones.',
-            fileName: 'Activar.bin',
+            fileName: 'etaHEN-1.1b.bin',
             author: 'Cubans Gamers Host PS5',
-            source: 'https://github.com/LightningMods/etaHEN',
+            source: 'https://cubansgamers.github.io/900/',
             version: '1.0'
         },
     
