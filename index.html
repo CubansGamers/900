@@ -1,7 +1,180 @@
-<!DOCTYPE html>
-<html>
+<html manifest="cache.appcache">
+
 <head>
-<title>PS4 9.00 Host By Cubans_Gamers</title>
+    <title>PS4 9.00 Host By Cubans_Gamers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+	
+
+    <script>
+        function allset() { }
+    </script>
+    <script defer src="int64.js"></script>
+    <script defer src="rop.js"></script>
+    <script defer src="exploit.js"></script>
+    <script defer src="payload_map.js"></script>
+    <script defer src="custom_host_stuff.js"></script>
+    <script defer src="appcache_handler.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            if (document.documentElement.hasAttribute("manifest")) {
+                add_cache_event_toasts();
+            }
+        }, false);
+    </script>
+</head>
+
+
+
+<body>
+    <div id="toast-container"></div>
+
+    <div style="margin: 40px;">
+        <h1 style="text-align: center;"></h1>
+        <p id="current-fw" class="text-secondary" style="text-align: center; margin-bottom: 8px; padding-bottom: 0;">
+        </p>
+        <p id="listening-ip" class="text-secondary" style="text-align: center; margin-top: 0; padding-top: 0;"><br />
+        </p>
+    </div>
+
+    <div id="before-jb-view">
+
+        <div id="run-jb-parent" class="opacity-transition"
+            style="display: flex; justify-content: center; align-items: center; position: absolute; top: 0;left: 0; width: 100%; height: 100%;">
+            <a tabindex="0" class="btn" style="max-width: 10%;" id="run-jb" onclick="runJailbreak()">Activar</a>
+        </div>
+
+        <div id="jb-progress" class="opacity-transition"
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; position: absolute; top: 0;left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none;">
+            <div class="lds-ellipsis" style="margin-top: 40px;">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p id="jb-progress-status-text" style="text-align: center; width: 100%; margin-top: 40px;">
+                
+                Cargando... <br /><span class="secondary-text"></span></p>
+            <textarea id="console" class="log" style="display: none;"></textarea>
+        </div>
+
+        <div id="post-jb-view" class="opacity-transition" style="width: 100%;">
+            <!-- please dont judge this, if i create the elements in js after the jailbreak it 'runs out of memory'. -->
+            <div id="payloads-list" class="grid-container">
+                <a class="btn mx-auto hidden-btn" id="payload-0" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-1" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-2" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-3" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-4" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-5" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-6" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-7" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-8" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-9" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-10" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-11" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-12" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-13" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-14" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-15" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-16" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-17" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-18" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+                <a class="btn mx-auto hidden-btn" id="payload-19" tabindex="0">
+                    <p class="payload-name"></p>
+                    <p class="payload-description"></p>
+                    <p class="payload-author"></p>
+                </a>
+            </div>
+        </div>
+
+        <center style="position: fixed;bottom: 0;width: 100%;margin-bottom: 24px" class="info opacity-transition"
+            id="credits">
+            <h4>
+                <b></b>
+                <br />
+                
+                </h3>
+        </center>
+    </div>
+
+</body>
 <style>
 html, body {
 background-image: url('img.jpg');
@@ -13,127 +186,4 @@ text-align: center;
 margin: 0px;
 overflow: hidden;
 }
-h1 {
-text-shadow: 0.1em 0.1em 0.2em black;
-font-size: 25px;
-text-align: center;
-color: yellow;
-}
-#jb-progress {
-display: block;
-}
-#main-section {
-display: none;
-}
-.btn {
-background-color: #003263;
-color: white;
-width: 260px;
-height: 49px;
-padding-bottom: 5px;
-text-align: center;
-font-size: 20px;
-margin-top: 8px;
-margin-bottom: 8px;
-margin-left: 8px;
-margin-right: 8px;
-border-bottom-width: 0px;
-border-right-width: 0px;
-border-top-width: 0px;
-border-left-width: 0px;
-transition-duration: 0.4s;
-cursor: pointer;
-border-radius: 8px;
-}
-.btn:hover {
-background-color: #0058b1;
-}
-.btn-hen{
-background-color: #b10000;
-}
-.btn-hen:hover {
-background-color: #f31414;
-}
-</style>
-<script src="int64.js"></script>
-<script src="rop.js"></script>
-<script src="kexploit.js"></script>
-<script src="webkit.js"></script>
-</head>
-<body onload="setTimeout(poc, 50);">
-<script>
-if (window.applicationCache.status=='0'){window.location.replace("cache.html");}
-</script>
-<h1 id="msgs">PS4 9.00 Host By Cubans_Gamers</h1>
-<hr>
-<br><br><br><br><br><br>
-<div id="jb-progress">
-<br>
-<h1 id=msgs2 style="font-size: 30px;margin-top: 56px;margin-bottom: 412px;"> Cargando... Por Favor Espera </h1>
-<br>
-<hr style="margin-top: -67px;">
-<h1 style="margin-top: 14px;color:yellow;">Muchísimos Juegos a tu Alcance - Cubans Gamers -WhatsApp:+53 59562523</h1>
-</div>
-<div id="main-section">
-<h1 style="font-size:30px;margin-top: -67px;color:yellow;">Exito al Cargar ✔</h1>
-<br><br>
-<h1 style="font-size:20px;">Otras Opciones</h1>
-<button class="btn" onmouseover="msgs.innerHTML='Modificar la Velocidad del Ventilador de la Consola (Recomendado 50 - 60&#176;C)'" onmouseout="msgs.innerHTML='PS4 9.00 Host By Cubans_Gamers'" onclick=load_fanthreshold() style="margin-left: 75px;"> Controlar Ventilador </button><select id="tempC"></select>&#176;C
-<br>
-<h1 style="font-size:20px;">Temperatura de Aceleración por Defecto: 79&#176;C</h1>
-<br>
-<hr style="margin-top: 255px;">
-<h1 style="margin-top: 14px;color:yellow;">Muchísimos Juegos a tu Alcance - Cubans Gamers -WhatsApp:+53 59562523</h1>
-<script>
-for(var i=40; i<=75; i=i+5){
-    var select = document.getElementById("tempC");
-    var option = document.createElement("OPTION");
-	select.options.add(option);
-	option.text = i;
-	option.value = i;
-}
-tempC.value=60;
-</script>
-<script>
-function jbdone(){
-	document.getElementById("main-section").style.display = "block";
-	document.getElementById("jb-progress").style.display = "none";
-	PLfile = "goldhen_2.2.4.bin";
-	setTimeout(load_poc, 1000);
-}
-
-function allset(){
-	msgs.innerHTML = LoadedMSG
-}
-
-function load_poc(){
- var req = new XMLHttpRequest();
- req.responseType = "arraybuffer";
- req.open('GET', PLfile);
- req.send();
- req.onreadystatechange = function () {
-  if (req.readyState == 4) {
-   PLD = req.response;
-   var payload_buffer = chain.syscall(477, 0, PLD.byteLength*4 , 7, 0x1002, -1, 0);
-   var pl = p.array_from_address(payload_buffer, PLD.byteLength*4);
-   var padding = new Uint8Array(4 - (req.response.byteLength % 4) % 4);
-   var tmp = new Uint8Array(req.response.byteLength + padding.byteLength);
-   tmp.set(new Uint8Array(req.response), 0);
-   tmp.set(padding, req.response.byteLength);
-   var shellcode = new Uint32Array(tmp.buffer);
-   pl.set(shellcode,0);
-   var pthread = p.malloc(0x10);
-   chain.call(libKernelBase.add32(OFFSET_lk_pthread_create), pthread, 0x0, payload_buffer, 0);
-   allset();
-  }
- };
-}
-
-function load_fanthreshold(){
-LoadedMSG="Temperatura de Aceleración Establecida ..."
-PLfile = "fan-threshold"+tempC.value+".bin";
-load_poc();
-}
-</script>
-</body>
 </html>
