@@ -1,8 +1,181 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>PS4 9.00 Host By Cubans_Gamers</title>
-<style>
+<title>PS4 Free Host By Cubans_Gamers</title>
+<html manifest="./PSFree.manifest">
+  <head>
+    <script>
+        function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));document.title="Installing offline cache: " + Percent + "%";}
+        function DisplayCacheProgress(){setTimeout(function(){;document.title="Cache Success !";},1000);setTimeout(function(){window.location.href = document.referrer;},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+    </script>
+    <meta charset="UTF-8">
+    <title>PSFree</title>
+    <link rel='stylesheet' href='./css/index.css'>
+  </head>
+  <body>
+    <!-- Floating Menu -->
+    <div class="floating-menu">
+    </div> 
+    <pre id="update-results" style="white-space: pre-wrap; margin-top: 10px;"></pre>
+
+    <h2 id="PS4FW"></h2>
+
+    <div id="jailbreak-page">
+      <div class="center-btn-wrap">
+        <button id="jailbreak" class="ps-btn" title="PlayStation">
+          <!-- PlayStation SVG logo -->
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M0.69116 21.9548C-0.506476 22.7935 -0.284724 24.2384 2.44769 25.1419C5.18011 26.0455 8.35603 26.2323 11.1505 25.729C11.0707 25.729 11.3102 25.729 11.1505 25.729V22.8774L8.43588 23.8C7.39792 24.1355 6.35997 24.2194 5.32202 23.9677C4.5236 23.7161 4.68328 23.2129 5.64139 22.7935L11.1505 20.7806V17.6774L3.48565 20.4452C2.52754 20.7806 1.56943 21.2839 0.69116 21.9548ZM19.2146 9.37419V17.5097C22.4881 19.1871 25.0431 17.5097 25.0431 13.1484C25.0431 8.70323 23.5261 6.69032 19.1348 5.09677C16.8193 4.25806 14.4241 3.50323 12.0288 3V27.2387L17.6178 29V8.61935C17.6178 7.69677 17.6178 7.02581 18.2565 7.27742C19.1348 7.52903 19.2146 8.45161 19.2146 9.37419ZM29.5941 20.0258C27.2787 19.1871 24.8036 18.8516 22.4083 19.1032C21.0779 19.1906 19.8294 19.5869 18.5759 20.0258V23.2968L23.7656 21.2839C24.8036 20.9484 25.8415 20.8645 26.8795 21.1161C27.6779 21.3677 27.5182 21.871 26.5601 22.2903L18.5759 25.3935V28.5806L29.5941 24.3032C30.3925 23.9677 31.1111 23.5484 31.7499 22.8774C32.3088 22.0387 32.0692 20.8645 29.5941 20.0258Z"></path> </g></svg>
+        </button>
+      </div>
+      <div class="loader" id="loader" style="display: none;">
+        <div class="loader-circle"></div>
+      </div>
+    </div>
+    
+    <div id="payloads-page" style="display: none;">
+      <nav class="floating-menu-payloads">
+        <button onclick="showtoolspayloads()">Tools</button>
+        <button onclick="showgamepayloads()">Games</button>
+        <button onclick="showlinuxpayloads()">Linux</button>
+      </nav>
+      <div id="payloads-tools" style="display: block;">
+        <h2 id="tools">Tools</h2>
+          <div class="button-container" id="button-container">
+            <button id="binloader">Bin-Loader</button>
+            <button data-func="load_AppDumper">App-Dumper</button>
+            <button data-func="load_KernelDumper">Kernel-Dumper</button>
+            <button data-func="load_VTXDumper">PS4-Dumper-VTX</button>
+            <button data-func="load_App2USB">App2USB</button>
+            <button data-func="load_DisableUpdates">Disable-Updates</button>
+            <button data-func="load_EnableUpdates">Enable-Updates</button>
+            <button data-func="load_FTP">FTP</button>
+            <button data-func="load_HistoryBlocker">History-Blocker</button>
+            <button data-func="load_KernelClock">Kernel-Clock</button>
+            <button data-func="load_Orbis">Orbis-Toolbox</button>
+            <button data-func="load_PS4Debug">PS4-Debug</button>
+            <button data-func="load_ToDex">ToDex</button>
+            <button data-func="load_ToDev">ToDev</button>
+            <button data-func="load_ToKratos">ToKratos</button>
+            <button data-func="load_ToCex">ToCex</button>
+            <button data-func="load_BackupDB">Backup-DB</button>
+            <button data-func="load_RestoreDB">Restore-DB</button>
+            <button data-func="load_RIFRenamer">RIF-Renamer</button>
+            <button data-func="load_ExitIDU">ExitIDU</button>
+            <button data-func="load_DisableASLR">Disable-ASLR</button>
+            <button data-func="load_ModuleDumper">Module-Dumper</button>
+            <button data-func="load_WebrRTE">WebRTE</button>
+            <button data-func="load_PermanentUART">Permanent-UART</button>
+            <button data-func="load_PUPDecrypt">PUP-Decrypt</button>
+          </div>
+      </div>
+      <div id="payloads-game" style="display: none;">
+        <h2 id="tools">Game</h2>
+          <div class="button-container" id="button-container">
+            <button data-func="load_GTAArbic">GTAV-ArabicGuy-1.27</button>
+            <button data-func="load_GTAArbic3">GTAV-ArabicGuy-1.32</button>
+            <button data-func="load_GTAArbic33">GTAV-ArabicGuy-1.33</button>
+            <button data-func="load_GTABQ133">GTAV-BeefQueefMod-1.33</button>
+            <button data-func="load_GTABQ134">GTAV-BeefQueefMod-1.34</button>
+            <button data-func="load_GTABQ138">GTAV-BeefQueefMod-1.38</button>
+            <button data-func="load_GTAWM132">GTAV-WildeModz-1.32</button>
+            <button data-func="load_GTAWM133">GTAV-WildeModz-1.33</button>
+            <button data-func="load_GTAWM138">GTAV-WildeModz-1.38</button>
+            <button data-func="load_Oysters100">RDR2-OystersMenu-1.00</button>
+            <button data-func="load_Oysters113">RDR2-OystersMenu-1.13</button>
+            <button data-func="load_Oysters119">RDR2-OystersMenu-1.19</button>
+            <button data-func="load_Oysters124">RDR2-OystersMenu-1.24</button>
+            <button data-func="load_Oysters124">RDR2-OystersMenu-1.29</button>
+          </div>
+      </div>
+      <div id="payloads-linux" style="display: none;">
+          <h2 id="tools">Linux</h2>
+          <div class="button-container" id="button-container">
+            <button data-func="load_Linux">Linux-1GB</button>
+            <button data-func="load_Linux2gb">Linux-2GB</button>
+            <button data-func="load_Linux3gb">Linux-3GB</button>
+            <button data-func="load_Linux4gb">Linux-4GB</button>
+            <button data-func="load_Linux5gb">Linux-5GB</button>
+          </div>
+      </div>
+    </div>
+    
+    <div id="DebugConsole">
+      <h3></h3>
+    
+      <div class="console" style="padding: 20px;"><pre id='console'></pre></div>
+    </div>
+	</head>
+<body onload="setTimeout(poc, 50);">
+<script>
+if (window.applicationCache.status=='0'){window.location.replace("cache.html");}
+</script>
+<h1 id="msgs">PS4 Free Host By Cubans_Gamers</h1>
+<hr>  
+
+    <!-- About Popup -->
+    <div class="overlay" id="overlay-popup"></div>
+    <div class="popup" id="about-popup">
+      <h2>About PSFree</h2>
+      <div>
+        <p>Version: 1.5.1</p>
+        <p>A simple web interface for PS4 jailbreak.</p>
+      </div>
+      <button  onclick="closeabout()" class="close-btn" id="close-about">Close</button>
+    </div>
+
+    <!-- Settings Popup -->
+    <div class="overlay" id="overlay-popup"></div>
+    <div class="popup" id="settings-popup">
+      <h2>Settings PSFree</h2>
+
+      <div id="PS4FWOK">
+        <h3>PS4 Firmwares supported</h3>
+        <div id="listfw">
+          <p>7.00</p>
+          <p>7.01</p>
+          <p>7.02</p>
+          <p>7.50</p>
+          <p>7.51</p>
+          <p>7.55</p>
+          <p>8.00</p>
+          <p>8.01</p>
+          <p>8.03</p>
+          <p>8.50</p>
+          <p>8.52</p>
+          <p>9.00</p>
+          <p>9.03</p>
+          <p>9.04</p>
+          <p>9.50</p>
+          <p>9.51</p>
+          <p>9.60</p>
+        </div>
+        
+      </div>
+
+      <div id="choosejb">
+        <h3>Choose your flavor</h3>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="hen" value="GoldHEN" onchange="savejbflavor(); choosejb('GoldHEN')"> GoldHEN
+          </label>
+          <label>
+            <input type="radio" name="hen" value="HEN" onchange="savejbflavor(); choosejb('HEN')"> HEN
+          </label>
+        </div>
+        <label id="autojbchkb">
+          <input type="checkbox" id="ckbaj" />
+          <p id="agtext">Desbloquedo</p>
+        </label>
+        <label id="debugconsolechkb">
+          <input type="checkbox" id="ckbdc" checked />
+          <p id="agtext">Enable Debug Console</p>
+        </label>
+      </div>
+
+      <button onclick="closesettings()" class="close-btn" id="close-settings">Close</button>
+      <!--<button data-func="load_AppCache" class="install-psfrl" id="install-psfrl">Install PSFree-Lite</button>-->
+    </div>
+    <script src='./js/index.js'></script>
+  </body>
+  <style>
 html, body {
 background-image: url('img.jpg');
 background-size: 100%;
@@ -13,128 +186,4 @@ text-align: center;
 margin: 0px;
 overflow: hidden;
 }
-h1 {
-text-shadow: 0.1em 0.1em 0.2em black;
-font-size: 25px;
-text-align: center;
-color: yellow;
-}
-#jb-progress {
-display: block;
-}
-#main-section {
-display: none;
-}
-.btn {
-background-color: #003263;
-color: white;
-width: 260px;
-height: 49px;
-padding-bottom: 5px;
-text-align: center;
-font-size: 20px;
-margin-top: 8px;
-margin-bottom: 8px;
-margin-left: 8px;
-margin-right: 8px;
-border-bottom-width: 0px;
-border-right-width: 0px;
-border-top-width: 0px;
-border-left-width: 0px;
-transition-duration: 0.4s;
-cursor: pointer;
-border-radius: 8px;
-}
-.btn:hover {
-background-color: #0058b1;
-}
-.btn-hen{
-background-color: #b10000;
-}
-.btn-hen:hover {
-background-color: #f31414;
-}
-</style>
-<script src="int64.js"></script>
-<script src="rop.js"></script>
-<script src="kexploit.js"></script>
-<script src="webkit.js"></script>
-</head>
-<body onload="setTimeout(poc, 50);">
-<script>
-if (window.applicationCache.status=='0'){window.location.replace("cache.html");}
-</script>
-<h1 id="msgs">PS4 9.00 Host By Cubans_Gamers</h1>
-<hr>
-<br><br><br><br><br><br>
-<div id="jb-progress">
-<br>
-<h1 id=msgs2 style="font-size: 30px;margin-top: 56px;margin-bottom: 412px;"> Cargando... Por Favor Espera </h1>
-<br>
-<hr style="margin-top: -67px;">
-<h1 style="margin-top: 14px;color:yellow;">Muchísimos Juegos a tu Alcance - Cubans Gamers -WhatsApp:+53 59562523</h1>
-</div>
-<div id="main-section">
-<h1 style="font-size:30px;margin-top: -67px;color:yellow;">Exito al Cargar ✔</h1>
-<br><br>
-<h1 style="font-size:20px;">Otras Opciones</h1>
-<button class="btn" onmouseover="msgs.innerHTML='Modificar la Velocidad del Ventilador de la Consola (Recomendado 50 - 60&#176;C)'" onmouseout="msgs.innerHTML='PS4 9.00 Host By Cubans_Gamers'" onclick=load_fanthreshold() style="margin-left: 75px;"> Controlar Ventilador </button><select id="tempC"></select>&#176;C
-<br>
-<h1 style="font-size:20px;">Temperatura de Aceleración por Defecto: 79&#176;C</h1>
-<br>
-<hr style="margin-top: 255px;">
-<h1 style="margin-top: 14px;color:yellow;">Muchísimos Juegos a tu Alcance - Cubans Gamers -WhatsApp:+53 59562523</h1>
-</div></h1>
-<script>
-for(var i=40; i<=75; i=i+5){
-    var select = document.getElementById("tempC");
-    var option = document.createElement("OPTION");
-	select.options.add(option);
-	option.text = i;
-	option.value = i;
-}
-tempC.value=60;
-</script>
-<script>
-function jbdone(){
-	document.getElementById("main-section").style.display = "block";
-	document.getElementById("jb-progress").style.display = "none";
-	PLfile = "goldhen_2.2.4.bin";
-	setTimeout(load_poc, 1000);
-}
-
-function allset(){
-	msgs.innerHTML = LoadedMSG
-}
-
-function load_poc(){
- var req = new XMLHttpRequest();
- req.responseType = "arraybuffer";
- req.open('GET', PLfile);
- req.send();
- req.onreadystatechange = function () {
-  if (req.readyState == 4) {
-   PLD = req.response;
-   var payload_buffer = chain.syscall(477, 0, PLD.byteLength*4 , 7, 0x1002, -1, 0);
-   var pl = p.array_from_address(payload_buffer, PLD.byteLength*4);
-   var padding = new Uint8Array(4 - (req.response.byteLength % 4) % 4);
-   var tmp = new Uint8Array(req.response.byteLength + padding.byteLength);
-   tmp.set(new Uint8Array(req.response), 0);
-   tmp.set(padding, req.response.byteLength);
-   var shellcode = new Uint32Array(tmp.buffer);
-   pl.set(shellcode,0);
-   var pthread = p.malloc(0x10);
-   chain.call(libKernelBase.add32(OFFSET_lk_pthread_create), pthread, 0x0, payload_buffer, 0);
-   allset();
-  }
- };
-}
-
-function load_fanthreshold(){
-LoadedMSG="Temperatura de Aceleración Establecida ..."
-PLfile = "fan-threshold"+tempC.value+".bin";
-load_poc();
-}
-</script>
-</body>
 </html>
