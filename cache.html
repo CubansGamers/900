@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html manifest="PSFree.manifest"><head>
+<title>PS4 Free Host By Cubans_Gamers</title>
+<style>
+html, body {
+background-image: url('img.jpg');
+background-size: 100%;
+background-repeat: no-repeat;
+background-color: #24272b;
+color: white;
+text-align: center;
+margin: 0px;
+overflow: hidden;
+}
+h1 {
+text-shadow: 0.1em 0.1em 0.2em black;
+font-size: 25px;
+text-align: center;
+color: white;
+}
+a {
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+<script>
+history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));setTimeout(function(){window.msgs2.innerHTML="Instalando Cache: " + Percent + "%";},500)}
+function DisplayCacheProgress(){setTimeout(function(){window.msgs2.innerHTML="Cache Instalado con Exito ✔";},1500);setTimeout(function(){window.msgs2.innerHTML="Ahora Reinicie el Navegador ...";},3500);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+<hr>
+<br><br><br><br><br><br><br>
+<h1 id=msgs2 style="font-size: 30px;margin-top: 56px;margin-bottom: 412px;"> Esperando... </h1>
+<br>
+<hr style="margin-top: -67px;">
+</div></h1>
+</body>
+</html>
