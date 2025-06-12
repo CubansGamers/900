@@ -1,2 +1,2 @@
 # 900
- https://cubansgamers.github.io/900free/
+ https://cubansgamers.github.io/900/
