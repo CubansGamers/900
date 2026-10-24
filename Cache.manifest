@@ -1,0 +1,27 @@
+CACHE MANIFEST 
+
+CACHE: 
+cache.appcache
+chain_lapse.js
+chain_poops.js
+core.js
+EXTRACTION_MANIFEST.json
+img.jpg
+index.html
+int64.js
+logo_raw.png
+mem.js
+payload.bin
+ps4 exploit -9.00-13.00 rm_extracted.zip
+ps4_offsets.js
+rpc_worker.js
+run_lapse.html
+run_poops.html
+patches\1100.bin
+patches\1150.bin
+patches\1200.bin
+patches\1250.bin
+patches\1300.bin
+
+NETWORK: 
+* 
