@@ -19,6 +19,7 @@ patches/1200.bin #87f1d40aea8fbf3adee7b8b5599d90c9d868436c15a498f2dce6bf5d96ae4d
 patches/1250.bin #5baaf0bb2663064db1eb1bfd976bc3aa5087ab7f0963648cb6fcb216adce714d
 patches/1300.bin #be70930d96c40b8d7ba03a57e2ea5c834b606fb74ed118756b4dea7fffaa1d57
 core.js?v=10 #3acf7e09988f10f800ca22bac1d4965b89ebb5ce2da4850089918fd1a457df4e
+img.jpg #2d0ac397bb3509d4b1dab26ebdba86e6ea063f8979b2ff95a2c57e7feeae98f9
 
 NETWORK:
 *
