@@ -139,6 +139,36 @@ const api = {
         return { exec: [execLo, execHi], orig: [origLo, origHi] };
     },
 
+    fireN(sLo, sHi, n) {
+        if (!armed) throw new Error("pivot is not armed");
+        const pa = addrofRaw(pivotObj);
+        const saved = rd8(pa[0], pa[1]);
+        let fired = 0;
+        for (let i = 0; i < n; ++i) {
+            wr8(pa[0], pa[1], sLo, sHi);
+            Math.expm1(pivotObj);
+            fired++;
+        }
+        wr8(pa[0], pa[1], saved[0], saved[1]);
+        return fired;
+    },
+
+    fireAB(aLo, aHi, bLo, bHi, n) {
+        if (!armed) throw new Error("pivot is not armed");
+        const pa = addrofRaw(pivotObj);
+        const saved = rd8(pa[0], pa[1]);
+        let fired = 0;
+        for (let i = 0; i < n; ++i) {
+            wr8(pa[0], pa[1], aLo, aHi);
+            Math.expm1(pivotObj);
+            wr8(pa[0], pa[1], bLo, bHi);
+            Math.expm1(pivotObj);
+            fired += 2;
+        }
+        wr8(pa[0], pa[1], saved[0], saved[1]);
+        return fired;
+    },
+
     fire(sLo, sHi) {
         if (!armed) throw new Error("pivot is not armed");
         const pa = addrofRaw(pivotObj);
@@ -163,6 +193,16 @@ const api = {
     release() {
         marker_arr = null;
         return true;
+    },
+
+    spin() {
+
+        const sink = new Uint32Array(4);
+        let x = 1;
+        for (;;) {
+            x = (x * 1103515245 + 12345) >>> 0;
+            sink[x & 3] = x;
+        }
     },
 };
 
